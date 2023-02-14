@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreWebAPIstore", "CoreWebAPIstore.csproj", "{C9146619-F0D0-4A5F-877C-826996F8CEBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9146619-F0D0-4A5F-877C-826996F8CEBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9146619-F0D0-4A5F-877C-826996F8CEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9146619-F0D0-4A5F-877C-826996F8CEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9146619-F0D0-4A5F-877C-826996F8CEBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E03E82C-934A-433B-B4EE-9278F8E73A50}
+	EndGlobalSection
+EndGlobal
