@@ -70,7 +70,7 @@ namespace CoreWebAPIstore.Controllers
         //
         [HttpPost]
         [ProducesResponseType(204)] //FromBody
-        public async Task<ActionResult<Product>> AddProduct(ProductDTO newProductDTO)
+        public IActionResult AddProduct(ProductDTO newProductDTO)
         {
             if (newProductDTO == null)
             {
