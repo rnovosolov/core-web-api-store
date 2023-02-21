@@ -3,6 +3,7 @@ using CoreWebAPIstore.Interfaces;
 using CoreWebAPIstore.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace CoreWebAPIstore.Controllers
 {
@@ -44,7 +45,7 @@ namespace CoreWebAPIstore.Controllers
 
         //GET api/Products?category=Phones
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Product>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ProductDTO>))]
         public IActionResult GetProductsByCategoryName(string category)
         {
 
@@ -58,12 +59,15 @@ namespace CoreWebAPIstore.Controllers
                 return BadRequest(ModelState);
             }
 
-            foreach(Product p in products)
+            List<ProductDTO> mappedProductsDTO = new List<ProductDTO>();
+
+            foreach (Product p in products)
             {
-                _productRepository.MapToDTO(p);
+                var mappedProductDTO = _productRepository.MapToDTO(p);
+                mappedProductsDTO.Add(mappedProductDTO);
             }
 
-            return Ok(products);
+            return Ok(mappedProductsDTO);
         }
 
 

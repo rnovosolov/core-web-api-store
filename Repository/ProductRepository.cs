@@ -105,7 +105,7 @@ namespace CoreWebAPIstore.Repository
 
         public ICollection<Product> GetProductsByCategoryName(string categoryName)
         {
-            return _context.Products.Where(p => p.Category.Name == categoryName).ToList();
+            return _context.Products.Include(p => p.Category).Where(p => p.Category.Name == categoryName).ToList();
         }
 
 
