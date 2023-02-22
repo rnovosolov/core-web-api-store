@@ -108,6 +108,5 @@ namespace CoreWebAPIstore.Repository
             return _context.Products.Include(p => p.Category).Where(p => p.Category.Name == categoryName).ToList();
         }
 
-
     }
 }

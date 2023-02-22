@@ -11,8 +11,6 @@ namespace CoreWebAPIstore.Models
 
         [Precision(18, 2)]
         public decimal Price { get; set; }
-
-        //FOREIGN KEY MISSING?
         public Category Category { get; set; }
         
     }
