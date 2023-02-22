@@ -1,6 +1,8 @@
 ﻿using CoreWebAPIstore.DTO;
 using CoreWebAPIstore.Interfaces;
 using CoreWebAPIstore.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -17,12 +19,13 @@ namespace CoreWebAPIstore.Controllers
         public ProductsController(IProductRepository productRepository)
         {
 
-            this._productRepository = productRepository;
+            _productRepository = productRepository;
 
         }
 
         //GET api/Products/4
         [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User, Administrator")]
         [ProducesResponseType(200, Type = typeof(Product))]
         public IActionResult GetProduct(int id)
         {
@@ -45,6 +48,7 @@ namespace CoreWebAPIstore.Controllers
 
         //GET api/Products?category=Phones
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User, Administrator")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ProductDTO>))]
         public IActionResult GetProductsByCategoryName(string category)
         {
@@ -73,6 +77,7 @@ namespace CoreWebAPIstore.Controllers
 
         //
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
         [ProducesResponseType(204)] //FromBody
         public IActionResult AddProduct(ProductDTO newProductDTO)
         {
@@ -109,6 +114,7 @@ namespace CoreWebAPIstore.Controllers
 
         //PATCH api/Product/9
         [HttpPatch("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
@@ -140,6 +146,7 @@ namespace CoreWebAPIstore.Controllers
 
         // DELETE api/Products/9
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]

@@ -9,17 +9,8 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<User> Users { get; set; }
 
-
-    //this for many-to-many relationships
-    //public DbSet<ProductCategory> ProductsCategories { get; set; }
-
-    /*protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Product>()
-            .HasColumnType(pc => new {pc.ProductId, pc.CategoryId )
-    .Property(object => object.property).HasPrecision(12, 10);
-    }*/
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -30,6 +21,5 @@ public class ApplicationDbContext : DbContext
 
         var connectionString = configuration.GetConnectionString("DefaultConnection");
         optionsBuilder.UseSqlServer(connectionString);
-        //base.OnConfiguring(optionsBuilder);
     }
 }
