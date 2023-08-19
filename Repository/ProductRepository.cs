@@ -61,11 +61,14 @@ namespace CoreWebAPIstore.Repository
 
         //--------------------------- Mapping DTO -----------------------------------
 
-        public Product MapFromDTO(ProductDTO productDTO)
+        public Product MapFromDTO(int? id, ProductDTO productDTO)
         {
             Product product = new Product();
 
-            product.Id = productDTO.Id;
+            if (id != null)
+            {
+                product.Id = (int)id;
+            }
             product.Name = productDTO.Name;
             product.Description = productDTO.Description;
             product.Quantity = productDTO.Quantity;
@@ -79,7 +82,6 @@ namespace CoreWebAPIstore.Repository
         {
             ProductDTO productDTO = new ProductDTO();
 
-            productDTO.Id = product.Id;
             productDTO.Name = product.Name;
             productDTO.Description = product.Description;
             productDTO.Quantity = product.Quantity;
@@ -100,7 +102,6 @@ namespace CoreWebAPIstore.Repository
         public Product GetProductById(int id)
         {
             return _context.Products.Include(p => p.Category).Where(p => p.Id == id).FirstOrDefault();
-
         }
 
         public ICollection<Product> GetProductsByCategoryName(string categoryName)

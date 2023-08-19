@@ -24,7 +24,7 @@ namespace CoreWebAPIstore.Controllers
         }
 
         //GET api/Products/4
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User, Administrator")]
         [ProducesResponseType(200, Type = typeof(Product))]
         public IActionResult GetProduct(int id)
@@ -47,7 +47,7 @@ namespace CoreWebAPIstore.Controllers
 
 
         //GET api/Products?category=Phones
-        [HttpGet]
+        [HttpGet("{category}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User, Administrator")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ProductDTO>))]
         public IActionResult GetProductsByCategoryName(string category)
@@ -99,7 +99,7 @@ namespace CoreWebAPIstore.Controllers
                 return BadRequest(ModelState);
             }
 
-            var mappedProduct = _productRepository.MapFromDTO(newProductDTO);
+            var mappedProduct = _productRepository.MapFromDTO(null, newProductDTO);
 
             if (!_productRepository.AddProduct(mappedProduct))
             {
@@ -113,14 +113,14 @@ namespace CoreWebAPIstore.Controllers
 
 
         //PATCH api/Product/9
-        [HttpPatch("{id}")]
+        [HttpPatch("{id:int}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public IActionResult UpdateProduct(int id, [FromBody]ProductDTO updatedProductDTO)
         {
-            if (updatedProductDTO == null || id != updatedProductDTO.Id)
+            if (updatedProductDTO == null)// || id != updatedProductDTO.Id)
             {
                 return BadRequest(ModelState);
             }
@@ -133,7 +133,7 @@ namespace CoreWebAPIstore.Controllers
                 return BadRequest(ModelState);
             }
 
-            var mappedProduct = _productRepository.MapFromDTO(updatedProductDTO);
+            var mappedProduct = _productRepository.MapFromDTO(id, updatedProductDTO);
 
             if (!_productRepository.UpdateProduct(mappedProduct))
             {
@@ -145,7 +145,7 @@ namespace CoreWebAPIstore.Controllers
         }
 
         // DELETE api/Products/9
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]

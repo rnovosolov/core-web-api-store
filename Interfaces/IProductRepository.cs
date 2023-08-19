@@ -21,7 +21,7 @@ namespace CoreWebAPIstore.Interfaces
 
 
         //------------------- Mapping DTO --------------------
-        public Product MapFromDTO(ProductDTO productDTO);
+        public Product MapFromDTO(int? id, ProductDTO productDTO);
         public ProductDTO MapToDTO(Product product);
 
 
