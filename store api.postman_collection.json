@@ -58,7 +58,7 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiYWRtaW5AZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiQWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiTWluIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsIm5iZiI6MTY5MjQ0NjIxOCwiZXhwIjoxNjkyNDQ2NTE4LCJpc3MiOiJBb0V2ekRzdzNpY3FGNDMxSGxFMlI0djNjcmFEbjZIQjAyNFlENEhwIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMDEvIn0._I_O393jkdxwICHVs35XpygIUSEIN5Crhzr3W7q3AUs"
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiYWRtaW5AZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiQWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiTWluIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsIm5iZiI6MTY5MjQ0ODUxOSwiZXhwIjoxNjkyNDQ4ODE5LCJpc3MiOiJBb0V2ekRzdzNpY3FGNDMxSGxFMlI0djNjcmFEbjZIQjAyNFlENEhwIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMDEvIn0.3TenQvgX6MKXzxsvhDwBTyFK0j-NGusgiT9WMExEn74"
 					}
 				},
 				"method": "GET",
@@ -118,7 +118,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "https://localhost:44301/api/Products/Phones"
+						"url": "https://localhost:44301/api/Products/Spares"
 					},
 					"_postman_previewlanguage": null,
 					"header": null,
@@ -134,7 +134,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "https://localhost:44301/api/Products/Phones"
+						"url": "https://localhost:44301/api/Products/Cables"
 					},
 					"_postman_previewlanguage": null,
 					"header": null,
@@ -164,6 +164,30 @@
 					}
 				},
 				"url": "https://localhost:44301/api/Products/10"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product Quantity by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiYWRtaW5AZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiQWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiTWluIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsIm5iZiI6MTY5MjUyNjU0MiwiZXhwIjoxNjkyNTI2ODQyLCJpc3MiOiJBb0V2ekRzdzNpY3FGNDMxSGxFMlI0djNjcmFEbjZIQjAyNFlENEhwIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMDEvIn0.sSE0xL2-MMgPxWeXgfpakWRY42Wclv9UqMAMx1vC_yU"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "35",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost:44301/api/Products/10/Quantity"
 			},
 			"response": []
 		},

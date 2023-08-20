@@ -120,18 +120,13 @@ namespace CoreWebAPIstore.Controllers
         [ProducesResponseType(404)]
         public IActionResult UpdateProduct(int id, [FromBody]ProductDTO updatedProductDTO)
         {
-            if (updatedProductDTO == null)// || id != updatedProductDTO.Id)
+            if (updatedProductDTO == null || !ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
             if (!_productRepository.ProductExists(id))
                 return NotFound();
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             var mappedProduct = _productRepository.MapFromDTO(id, updatedProductDTO);
 
@@ -141,8 +136,27 @@ namespace CoreWebAPIstore.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return NoContent();
+            return Ok("Product updated.");
         }
+
+        //POST api/Products/9/Quantity
+        [HttpPost("{id:int}/Quantity")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
+        public IActionResult UpdateProductQuantity(int id, [FromBody] int newQuantity)
+        {
+            var product = _productRepository.GetProductById(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            product.Quantity = newQuantity;
+            _productRepository.UpdateProduct(product);
+
+            return Ok("Product quantity updated.");
+        }
+
 
         // DELETE api/Products/9
         [HttpDelete("{id:int}")]
@@ -169,7 +183,7 @@ namespace CoreWebAPIstore.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return Ok(); 
+            return Ok("Product deleted"); 
 
         }
 
