@@ -112,6 +112,52 @@ namespace CoreWebAPIstore.Controllers
         }
 
 
+        [HttpPost("AddMultiple")]
+        public IActionResult AddMultipleProducts([FromBody] List<ProductDTO> newProductsDTO)
+        {
+            if (newProductsDTO == null || !newProductsDTO.Any())
+            {
+                return BadRequest("No products provided.");
+            }
+
+            var addedProductIds = new List<int>();
+
+            foreach (var newProductDTO in newProductsDTO)
+            {
+                if (!ModelState.IsValid)
+                {
+                    ModelState.AddModelError("", "Invalid product data.");
+                    continue; // Skip adding this product and proceed to the next one
+                }
+
+                var existingProductNames = _productRepository.GetProducts().Select(p => p.Name.Trim().ToUpper()).ToList();
+
+                if (existingProductNames.Contains(newProductDTO.Name.TrimEnd().ToUpper()))
+                {
+                    ModelState.AddModelError("", $"Product '{newProductDTO.Name}' already exists.");
+                    continue; // Skip adding this product and proceed to the next one
+                }
+
+                var mappedProduct = _productRepository.MapFromDTO(null, newProductDTO);
+
+                if (_productRepository.AddProduct(mappedProduct))
+                {
+                    addedProductIds.Add(mappedProduct.Id);
+                }
+            }
+
+            if (addedProductIds.Any())
+            {
+                return Ok($"Products with IDs: {string.Join(", ", addedProductIds)} added.");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Failed to add any products.");
+                return StatusCode(500, ModelState);
+            }
+        }
+
+
         //PATCH api/Product/9
         [HttpPatch("{id:int}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
